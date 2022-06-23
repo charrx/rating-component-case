@@ -42,9 +42,11 @@ export class StarRating extends LitElement {
     }
   `;
 
-  @property({ type: Boolean }) rating: number = 1;
+  @property({ type: Number }) rating: number = 1;
 
   @property({ type: Boolean }) disabled: boolean = false;
+
+  @property({ type: String }) size: string = "S";
 
   render() {
     return html`
