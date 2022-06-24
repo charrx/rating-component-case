@@ -2,13 +2,7 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 const starBold = html`
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M4.07512 22.3085L6.21423 14.999L0.476607 10.1393C0.269663 9.96838 0.120233 9.73794 0.0485476 9.4792C-0.0231375 9.22047 -0.0136153 8.94595 0.0758251 8.69282C0.165265 8.43968 0.330304 8.22015 0.548596 8.06394C0.766889 7.90774 1.02789 7.82241 1.29627 7.8195H8.29337L10.7823 0.859942C10.8692 0.60817 11.0324 0.394579 11.2492 0.239984C11.466 0.0853893 11.7256 0 11.9918 0C12.2581 0 12.5177 0.0853893 12.7345 0.239984C12.9513 0.394579 13.1145 0.60817 13.2013 0.859942L15.7103 7.8695H22.7074C22.977 7.87512 23.2384 7.96323 23.4564 8.12197C23.6744 8.28072 23.8386 8.50247 23.9268 8.75737C24.015 9.01227 24.023 9.28809 23.9498 9.54768C23.8765 9.80728 23.7255 10.0382 23.5171 10.2093L17.6195 15.049L19.9086 22.2385C20.0126 22.4941 20.0319 22.7711 19.9638 23.0385C19.8956 23.3058 19.7436 23.5439 19.53 23.7184C19.3164 23.8929 19.0524 23.985 18.7769 23.9984C18.5014 24.0118 18.2289 23.9414 17.9994 23.7884L12.0148 19.7187L6.00432 23.7884C5.78082 23.9337 5.51778 24.0088 5.2514 23.9984C4.98503 23.988 4.72841 23.8907 4.51687 23.7284C4.30534 23.5661 4.14927 23.3431 4.07016 23.0885C3.99105 22.8338 3.99278 22.5621 4.07512 22.3085Z"
       fill="currentColor"
@@ -32,13 +26,35 @@ export class StarRating extends LitElement {
       --primary-star: #ffe25e;
     }
 
-    .rating-input:disabled {
+    .rating-input:disabled ~ .rating-label {
       --primary-star: #b8b8b7;
+      cursor: auto;
     }
 
     .rating-label {
       color: var(--primary-star);
       position: relative;
+      cursor: pointer;
+    }
+
+    .rating-container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .small > svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .medium > svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .large > svg {
+      width: 36px;
+      height: 36px;
     }
   `;
 
@@ -46,31 +62,43 @@ export class StarRating extends LitElement {
 
   @property({ type: Boolean }) disabled: boolean = false;
 
-  @property({ type: String }) size: string = "S";
+  @property({ type: String }) size: string = "medium";
 
   render() {
     return html`
-      <div>
+      <div class="rating-container">
         <!-- FIRST STAR -->
         <input
           type="radio"
           id="rating-one"
-          name="rating"
+          name="rating-one"
           value="1"
           class="rating-input"
+          ?checked=${this.rating === 1}
+          ?disabled=${this.disabled}
         />
-        <label for="rating-one" class="rating-label" title="Worst Quality">
+        <label
+          for="rating-one"
+          class="rating-label ${this.size}"
+          title="Worst Quality"
+        >
           ${starBold}
         </label>
         <!-- SECOND STAR -->
         <input
           type="radio"
           id="rating-two"
-          name="rating"
+          name="rating-two"
           value="2"
           class="rating-input"
+          ?checked=${this.rating === 2}
+          ?disabled=${this.disabled}
         />
-        <label for="rating-two" class="rating-label" title="Bad Quality">
+        <label
+          for="rating-two"
+          class="rating-label ${this.size}"
+          title="Bad Quality"
+        >
           ${starBold}
         </label>
         <!-- THIRD STAR -->
@@ -80,8 +108,14 @@ export class StarRating extends LitElement {
           name="rating"
           value="3"
           class="rating-input"
+          ?checked=${this.rating === 3}
+          ?disabled=${this.disabled}
         />
-        <label for="rating-three" class="rating-label" title="Average Quality">
+        <label
+          for="rating-three"
+          class="rating-label ${this.size}"
+          title="Average Quality"
+        >
           ${starBold}
         </label>
         <!-- FOURTH STAR -->
@@ -91,8 +125,14 @@ export class StarRating extends LitElement {
           name="rating"
           value="4"
           class="rating-input"
+          ?checked=${this.rating === 4}
+          ?disabled=${this.disabled}
         />
-        <label for="rating-four" class="rating-label" title="Good Quality">
+        <label
+          for="rating-four"
+          class="rating-label ${this.size}"
+          title="Good Quality"
+        >
           ${starBold}
         </label>
         <!-- FIFTH STAR -->
@@ -102,10 +142,12 @@ export class StarRating extends LitElement {
           name="rating"
           value="5"
           class="rating-input"
+          ?checked=${this.rating === 5}
+          ?disabled=${this.disabled}
         />
         <label
           for="rating-five"
-          class="rating-label"
+          class="rating-label ${this.size}"
           title="Exceptional Quality"
         >
           ${starBold}

@@ -11,6 +11,7 @@
     <style>
       html:root {
         --primary-star: #e1e1e1;
+        --primary-section: #fafafa;
         --primary-text: #121212;
       }
 
@@ -18,9 +19,91 @@
         font-family: "Cera Pro";
         color: var(--primary-text);
       }
+
+      .star-rating-container {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        width: 50rem;
+        margin: auto;
+      }
+
+      .section-header {
+        display: flex;
+        align-self: flex-start;
+      }
+
+      .section-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--primary-section);
+        height: 10rem;
+      }
+
+      .star-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2.5rem;
+      }
     </style>
   </head>
   <body>
-    <star-rating></star-rating>
+    <div class="star-rating-container">
+      <h1>Star Rating Component</h1>
+      <h2 class="section-header">Size</h2>
+      <section class="section-container">
+        <div class="star-container">
+          <div>
+            <star-rating size="small"></star-rating>
+            <p>Small</p>
+          </div>
+          <div>
+            <star-rating></star-rating>
+            <p>Default - Medium</p>
+          </div>
+          <div>
+            <star-rating size="large"></star-rating>
+            <p>Large</p>
+          </div>
+        </div>
+      </section>
+      <h2 class="section-header">Rating</h2>
+      <section class="section-container">
+        <div class="star-container">
+          <div>
+            <star-rating></star-rating>
+            <p>1</p>
+          </div>
+          <div>
+            <star-rating rating="2"></star-rating>
+            <p>2</p>
+          </div>
+          <div>
+            <star-rating rating="3"></star-rating>
+            <p>3</p>
+          </div>
+          <div>
+            <star-rating rating="4"></star-rating>
+            <p>4</p>
+          </div>
+          <div>
+            <star-rating rating="5"></star-rating>
+            <p>5</p>
+          </div>
+        </div>
+      </section>
+      <h2 class="section-header">State</h2>
+      <section class="section-container">
+        <div class="star-container">
+          <div>
+            <star-rating disabled></star-rating>
+            <p>Disabled</p>
+          </div>
+        </div>
+      </section>
+    </div>
   </body>
 </html>
