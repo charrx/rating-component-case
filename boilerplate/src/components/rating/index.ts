@@ -2,7 +2,6 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { styles } from "./styles";
 
-// I choose to
 const roundedStar = html`
   <svg
     viewBox="0 0 24 24"
@@ -30,6 +29,8 @@ export class StarRating extends LitElement {
   @property({ type: String }) state = "interactive";
 
   @property({ type: String }) size = "small";
+
+  // Radio button vs checkboxes vs buttons.
 
   render() {
     return html`

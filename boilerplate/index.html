@@ -14,6 +14,7 @@
         --primary-container: #fafafa;
         --primary-text: #121212;
         --primary-availability: #356d22;
+        --primary-action: #407dbb;
         --star-size-small: 1rem;
         --star-size-medium: 1.5rem;
         --star-size-large: 2rem;
@@ -22,7 +23,13 @@
       body {
         font-family: "Cera Pro";
         color: var(--primary-text);
-        margin: 0 10rem 0 10rem;
+        margin: 0 10rem 5rem 10rem;
+      }
+
+      .section-container {
+        display: flex;
+        flex-direction: row;
+        gap: 5rem;
       }
 
       .product-container {
@@ -31,6 +38,10 @@
         width: 14rem;
         border: 1px solid black;
         padding: 1rem;
+      }
+
+      .product-name {
+        margin: 1rem 0 0.5rem 0;
       }
 
       .product-image {
@@ -58,6 +69,37 @@
       .warehouse-status {
         color: var(--primary-availability);
         margin: 0 !important;
+      }
+
+      .rate-experience-container {
+        width: 100%;
+      }
+
+      .comments-label {
+        margin: 1rem 0 0.5rem;
+      }
+
+      .comments-area {
+        padding: 1rem 0 0 1rem;
+      }
+
+      .actions-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .primary-action {
+        background-color: var(--primary-action);
+        color: white;
+      }
+
+      .secondary-action {
+        background-color: white;
+        border: 1px solid var(--primary-action);
+        color: var(--primary-action);
       }
 
       .star-rating-container {
@@ -88,50 +130,67 @@
     </style>
   </head>
   <body>
-    <section>
-      <h1>Rate our toys</h1>
-      <div class="product-container">
-        <img
-          src="./src/components/rating/spaceShuttle.jpg"
-          class="product-image"
-          width="150"
-          height="150"
-          alt="Space Shuttle Lego Box"
-          role="presentation"
-        />
-        <h4>NASA Space Shuttle Discovery</h4>
-        <p class="warehouse-status">Available now</p>
-        <div class="user-rating-container">
-          <star-rating rating="4" state="readonly"></star-rating>
-          <p class="user-rating-amount-container">
-            <span class="user-rating-amount">4</span> (52)
-          </p>
+    <div class="section-container">
+      <!-- Candidate for a custom component? -->
+      <section>
+        <h1>Product Item</h1>
+        <div class="product-container">
+          <img
+            src="./src/components/rating/spaceShuttle.jpg"
+            class="product-image"
+            width="150"
+            height="150"
+            alt="Space Shuttle Lego Box"
+            role="presentation"
+          />
+          <h4 class="product-name">NASA Space Shuttle Discovery</h4>
+          <p class="warehouse-status">Available now</p>
+          <div class="user-rating-container">
+            <star-rating rating="4" state="readonly"></star-rating>
+            <p class="user-rating-amount-container">
+              <span class="user-rating-amount">4</span> (52)
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h1>Rate our toys</h1>
-      <div class="product-container">
-        <img
-          src="./src/components/rating/spaceShuttle.jpg"
-          class="product-image"
-          width="150"
-          height="150"
-          alt="Space Shuttle Lego Box"
-          role="presentation"
-        />
-        <h4>NASA Space Shuttle Discovery</h4>
-        <p class="warehouse-status">Available now</p>
-        <div class="user-rating-container">
-          <star-rating rating="4" state="readonly"></star-rating>
-          <p class="user-rating-amount-container">
-            <span class="user-rating-amount">4</span> (52)
+      <!-- Candidate for a custom component? -->
+      <section>
+        <h1>Rate our experience</h1>
+        <div class="product-container rate-experience-container">
+          <h4 class="product-name">We've received your registration!</h4>
+          <p>
+            We value your input and would appreciate if you took the time to
+            rate your experience.
           </p>
-        </div>
-      </div>
-    </section>
+          <div class="user-rating-container">
+            <star-rating rating="0"></star-rating>
+          </div>
 
+          <label
+            for="experience-comments"
+            class="comments-label"
+            title="Additional comments"
+            >Any additional comments?</label
+          >
+
+          <textarea
+            id="experience-comments"
+            class="comments-area"
+            name="experience-comments"
+            rows="4"
+            cols="50"
+          >
+Enter your comments here
+          </textarea>
+
+          <div class="actions-container">
+            <button class="secondary-action">No thanks</button>
+            <input type="submit" class="primary-action" />
+          </div>
+        </div>
+      </section>
+    </div>
     <section>
       <h2>Size</h2>
       <div class="stars-container">

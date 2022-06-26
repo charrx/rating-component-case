@@ -5,7 +5,6 @@ export const styles = [
     .rating {
       display: flex;
       flex-direction: row-reverse;
-      /* margin-left: 20px; */
     }
 
     .rating > input:not(:checked) ~ label:hover,
@@ -16,6 +15,7 @@ export const styles = [
     input.rating-input {
       opacity: 0; // This is done to hide the radio button from the user, but they still exist in the dom.
       position: absolute; // This is to place them next to the labels, so it looks like they done take up any space.
+      margin: 0 !important;
     }
 
     .rating-label {
