@@ -11,13 +11,53 @@
     <style>
       html:root {
         --primary-star: #e1e1e1;
-        --primary-section: #fafafa;
+        --primary-container: #fafafa;
         --primary-text: #121212;
+        --primary-availability: #356d22;
+        --star-size-small: 1rem;
+        --star-size-medium: 1.5rem;
+        --star-size-large: 2rem;
       }
 
       body {
         font-family: "Cera Pro";
         color: var(--primary-text);
+        margin: 0 10rem 0 10rem;
+      }
+
+      .product-container {
+        display: flex;
+        flex-direction: column;
+        width: 14rem;
+        border: 1px solid black;
+        padding: 1rem;
+      }
+
+      .product-image {
+        display: flex;
+        align-self: center;
+      }
+
+      .user-rating-container {
+        display: flex;
+        flex-direction: row;
+        justify-items: left;
+        align-items: center;
+      }
+
+      .user-rating-amount-container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.2rem;
+      }
+
+      .user-rating-amount {
+        font-weight: bold;
+      }
+
+      .warehouse-status {
+        color: var(--primary-availability);
+        margin: 0 !important;
       }
 
       .star-rating-container {
@@ -28,82 +68,133 @@
         margin: auto;
       }
 
-      .section-header {
-        display: flex;
-        align-self: flex-start;
-      }
-
-      .section-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--primary-section);
-        height: 10rem;
-      }
-
-      .star-container {
+      .stars-container {
         display: flex;
         flex-direction: row;
+        gap: 0.5rem;
+      }
+
+      .star-rating-container {
+        width: 15rem;
+        height: 10rem;
+        display: flex;
+        flex-direction: column;
+        background: var(--primary-container);
         align-items: center;
-        gap: 2.5rem;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-grow: 1;
       }
     </style>
   </head>
   <body>
-    <div class="star-rating-container">
-      <h1>Star Rating Component</h1>
-      <h2 class="section-header">Size</h2>
-      <section class="section-container">
-        <div class="star-container">
-          <div>
-            <star-rating size="small"></star-rating>
-            <p>Small</p>
-          </div>
-          <div>
-            <star-rating></star-rating>
-            <p>Default - Medium</p>
-          </div>
-          <div>
-            <star-rating size="large"></star-rating>
-            <p>Large</p>
-          </div>
+    <section>
+      <h1>Rate our toys</h1>
+      <div class="product-container">
+        <img
+          src="./src/components/rating/spaceShuttle.jpg"
+          class="product-image"
+          width="150"
+          height="150"
+          alt="Space Shuttle Lego Box"
+          role="presentation"
+        />
+        <h4>NASA Space Shuttle Discovery</h4>
+        <p class="warehouse-status">Available now</p>
+        <div class="user-rating-container">
+          <star-rating rating="4" state="readonly"></star-rating>
+          <p class="user-rating-amount-container">
+            <span class="user-rating-amount">4</span> (52)
+          </p>
         </div>
-      </section>
-      <h2 class="section-header">Rating</h2>
-      <section class="section-container">
-        <div class="star-container">
-          <div>
-            <star-rating></star-rating>
-            <p>1</p>
-          </div>
-          <div>
-            <star-rating rating="2"></star-rating>
-            <p>2</p>
-          </div>
-          <div>
-            <star-rating rating="3"></star-rating>
-            <p>3</p>
-          </div>
-          <div>
-            <star-rating rating="4"></star-rating>
-            <p>4</p>
-          </div>
-          <div>
-            <star-rating rating="5"></star-rating>
-            <p>5</p>
-          </div>
+      </div>
+    </section>
+
+    <section>
+      <h1>Rate our toys</h1>
+      <div class="product-container">
+        <img
+          src="./src/components/rating/spaceShuttle.jpg"
+          class="product-image"
+          width="150"
+          height="150"
+          alt="Space Shuttle Lego Box"
+          role="presentation"
+        />
+        <h4>NASA Space Shuttle Discovery</h4>
+        <p class="warehouse-status">Available now</p>
+        <div class="user-rating-container">
+          <star-rating rating="4" state="readonly"></star-rating>
+          <p class="user-rating-amount-container">
+            <span class="user-rating-amount">4</span> (52)
+          </p>
         </div>
-      </section>
-      <h2 class="section-header">State</h2>
-      <section class="section-container">
-        <div class="star-container">
-          <div>
-            <star-rating disabled></star-rating>
-            <p>Disabled</p>
-          </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Size</h2>
+      <div class="stars-container">
+        <div class="star-rating-container">
+          <star-rating></star-rating>
+          <p>Default - Small</p>
         </div>
-      </section>
-    </div>
+        <div class="star-rating-container">
+          <star-rating size="medium"></star-rating>
+          <p>Medium</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating size="large"></star-rating>
+          <p>Large</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>State</h2>
+      <div class="stars-container">
+        <div class="star-rating-container">
+          <star-rating rating="0"></star-rating>
+          <p>Inactive hover</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating rating="2" autofocus></star-rating>
+          <p>Focus</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating disabled></star-rating>
+          <p>Disabled</p>
+        </div>
+
+        <div class="star-rating-container">
+          <star-rating rating="4" state="readonly"></star-rating>
+          <p>Readonly</p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Rating</h2>
+      <div class="stars-container">
+        <div class="star-rating-container">
+          <star-rating></star-rating>
+          <p>1 star</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating rating="2"></star-rating>
+          <p>2 star</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating rating="3"></star-rating>
+          <p>3 star</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating rating="4"></star-rating>
+          <p>4 star</p>
+        </div>
+        <div class="star-rating-container">
+          <star-rating rating="5"></star-rating>
+          <p>5 star</p>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
