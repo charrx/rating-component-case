@@ -46,7 +46,6 @@ export class StarRating extends LitElement {
   @property({ type: Number }) max = 5;
 
   private _handleClick(e: Event) {
-    console.log("clicked!");
     const target = e.target as HTMLInputElement;
     this.rating = parseInt(target.value);
   }

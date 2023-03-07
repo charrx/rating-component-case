@@ -10,32 +10,28 @@
     />
     <style>
       html:root {
-        /* Page layout */
-        --primary-container: #fafafa;
-        --primary-text: #121212;
-        --primary-availability: #356d22;
-        --primary-action: #407dbb;
-
         /* Colors */
-        --star-primay-color: #e1e1e1;
+        --background: #fafafa;
+        --color-text: #121212;
+        --color-star-base: #e1e1e1;
+        --color-availability: #356d22;
+        --color-action-default: #407dbb;
 
         /* States */
-        --star-state-disabled: #b8b8b7;
-        --star-state-checked: #e7a83b;
-        --star-state-focus: #399ae4;
-
-        /* Actions */
-        --star-action-hover: #ffc107;
+        --color-disabled: #b8b8b7;
+        --color-checked: #e7a83b;
+        --color-focus: #399ae4;
+        --color-hover: #ffc107;
 
         /* Sizes */
-        --star-size-small: 1rem; /* 16px */
-        --star-size-medium: 1.5rem; /* 24px */
-        --star-size-large: 2rem; /* 32px */
+        --size-small: 1rem; /* 16px */
+        --size-medium: 1.5rem; /* 24px */
+        --size-large: 2rem; /* 32px */
       }
 
       body {
         font-family: "Cera Pro";
-        color: var(--primary-text);
+        color: var(--color-text);
         margin: 0 10rem 5rem 10rem;
       }
 
@@ -80,7 +76,7 @@
       }
 
       .warehouse-status {
-        color: var(--primary-availability);
+        color: var(--color-availability);
         margin: 0 !important;
       }
 
@@ -105,14 +101,14 @@
       }
 
       .primary-action {
-        background-color: var(--primary-action);
+        background-color: var(--color-action-default);
         color: white;
       }
 
       .secondary-action {
         background-color: white;
-        border: 1px solid var(--primary-action);
-        color: var(--primary-action);
+        border: 1px solid var(--color-action-default);
+        color: var(--color-action-default);
       }
 
       .star-rating-container {
@@ -134,7 +130,7 @@
         height: 10rem;
         display: flex;
         flex-direction: column;
-        background: var(--primary-container);
+        background: var(--background);
         align-items: center;
         justify-content: center;
         gap: 1.5rem;
