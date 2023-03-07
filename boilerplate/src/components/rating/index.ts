@@ -46,6 +46,7 @@ export class StarRating extends LitElement {
   }
 
   render() {
+    // Could be a property: Labels
     const accessibilityLabels = [
       "Worst Quality",
       "Bad Quality",
