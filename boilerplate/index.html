@@ -10,14 +10,27 @@
     />
     <style>
       html:root {
-        --primary-star: #e1e1e1;
+        /* Page layout */
         --primary-container: #fafafa;
         --primary-text: #121212;
         --primary-availability: #356d22;
         --primary-action: #407dbb;
-        --star-size-small: 1rem;
-        --star-size-medium: 1.5rem;
-        --star-size-large: 2rem;
+
+        /* Colors */
+        --star-primay-color: #e1e1e1;
+
+        /* States */
+        --star-state-disabled: #b8b8b7;
+        --star-state-checked: #e7a83b;
+        --star-state-focus: #399ae4;
+
+        /* Actions */
+        --star-action-hover: #ffc107;
+
+        /* Sizes */
+        --star-size-small: 1rem; /* 16px */
+        --star-size-medium: 1.5rem; /* 24px */
+        --star-size-large: 2rem; /* 32px */
       }
 
       body {
@@ -131,7 +144,6 @@
   </head>
   <body>
     <div class="section-container">
-      <!-- Candidate for a custom component? -->
       <section>
         <h1>Product Item</h1>
         <div class="product-container">
@@ -154,7 +166,6 @@
         </div>
       </section>
 
-      <!-- Candidate for a custom component? -->
       <section>
         <h1>Rate our experience</h1>
         <div class="product-container rate-experience-container">

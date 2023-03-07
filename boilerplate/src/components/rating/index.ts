@@ -1,6 +1,14 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { styles } from "./styles";
+import { range } from "lit/directives/range.js";
+import { map } from "lit/directives/map.js";
+
+enum Sizes {
+  Small = "small",
+  Medium = "medium",
+  Large = "large",
+}
 
 const roundedStar = html`
   <svg
@@ -26,105 +34,54 @@ export class StarRating extends LitElement {
 
   @property({ type: Boolean }) autofocus = false;
 
-  @property({ type: String }) state = "interactive";
+  @property({ type: Boolean }) readonly = false;
 
-  @property({ type: String }) size = "small";
+  @property({ type: String }) size = Sizes.Small;
 
-  // Radio button vs checkboxes vs buttons.
+  @property({ type: Number }) max = 5;
+
+  private _handleClick(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.rating = parseInt(target.value);
+  }
 
   render() {
+    const accessibilityLabels = [
+      "Worst Quality",
+      "Bad Quality",
+      "Average Quality",
+      "Good Quality",
+      "Exceptional Quality",
+    ];
+
     return html`
-      <div
-        class="rating"
-        role="radiogroup"
-        tabindex="1"
-        ?autofocus="${this.autofocus}"
-      >
-        <!-- FIFTH STAR -->
-        <input
-          type="radio"
-          id="star-five"
-          name="star-five"
-          class="rating-input ${this.state}"
-          tabindex="6"
-          ?checked=${this.rating === 5}
-          ?disabled=${this.disabled}
-        />
-        <label
-          for="star-five"
-          class="rating-label star-five ${this.size} "
-          title="Exceptional Quality"
-        >
-          ${roundedStar}
-        </label>
-        <!-- FOURTH STAR -->
-        <input
-          type="radio"
-          id="star-four"
-          name="star-four"
-          class="rating-input ${this.state}"
-          tabindex="5"
-          ?checked=${this.rating >= 4}
-          ?disabled=${this.disabled}
-        />
-        <label
-          for="star-four"
-          class="rating-label star-four ${this.size}"
-          title="Good Quality"
-        >
-          ${roundedStar}
-        </label>
-        <!-- THIRD STAR -->
-        <input
-          type="radio"
-          id="star-three"
-          name="star-three"
-          class="rating-input ${this.state}"
-          tabindex="4"
-          ?checked=${this.rating >= 3}
-          ?disabled=${this.disabled}
-        />
-        <label
-          for="star-three"
-          class="rating-label star-three ${this.size}"
-          title="Average Quality"
-        >
-          ${roundedStar}
-        </label>
-        <!-- SECOND STAR -->
-        <input
-          type="radio"
-          id="star-two"
-          name="star-two"
-          class="rating-input ${this.state}"
-          tabindex="3"
-          ?checked=${this.rating >= 2}
-          ?disabled=${this.disabled}
-        />
-        <label
-          for="star-two"
-          class="rating-label star-two ${this.size} "
-          title="Bad Quality"
-        >
-          ${roundedStar}
-        </label>
-        <!-- FIRST STAR -->
-        <input
-          type="radio"
-          id="star-one"
-          name="star-one"
-          class="rating-input ${this.state}"
-          tabindex="2"
-          ?checked=${this.rating >= 1}
-          ?disabled=${this.disabled}
-        />
-        <label
-          for="star-one"
-          class="rating-label star-one ${this.size}"
-          title="Worst Quality"
-        >
-          ${roundedStar}
-        </label>
+      <div class="star-rating">
+        <div class="star-input" tabindex="1" ?autofocus="${this.autofocus}">
+          ${map(range(1, this.max + 1), (star) => {
+            const reversedStar = this.max - star + 1;
+            return html`
+              <input
+                type="radio"
+                name="rating"
+                id="rating-${reversedStar}"
+                value="${reversedStar}"
+                tabindex="${reversedStar + 1}"
+                @click=${this._handleClick}
+                ?checked=${this.rating === reversedStar}
+                ?disabled=${this.disabled}
+                ?readonly=${this.readonly}
+              />
+              <label
+                for="rating-${reversedStar}"
+                class="star-${reversedStar} ${this.size}"
+                role="presentation"
+                title="${accessibilityLabels[reversedStar - 1]}"
+              >
+                ${roundedStar}</label
+              >
+            `;
+          })}
+        </div>
       </div>
     `;
   }
