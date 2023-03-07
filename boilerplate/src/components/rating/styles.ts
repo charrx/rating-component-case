@@ -32,46 +32,41 @@ export const styles = [
       cursor: auto;
     }
 
-    /* .star-rating input:read-only ~ label {
+    .star-rating input.readonly ~ label {
       pointer-events: none;
-    } */
-
-    /* .star-input:focus-visible {
-      border-color: var(--star-state-focus);
-      border-style: solid;
-      border-width: 2px;
-      border-radius: 15px;
-    } */
+    }
 
     #rating-1:focus ~ .star-1 {
-      border: 2px solid darkblue;
+      border-color: var(--star-state-focus);
+      border-style: solid;
+      border-width: 1px;
       border-radius: 25%;
     }
 
     #rating-2:focus ~ .star-2 {
       border-color: var(--star-state-focus);
       border-style: solid;
-      border-width: 2px;
+      border-width: 1px;
       border-radius: 25%;
     }
 
     #rating-3:focus ~ .star-3 {
       border-color: var(--star-state-focus);
       border-style: solid;
-      border-width: 2px;
+      border-width: 1px;
       border-radius: 25%;
     }
     #rating-4:focus ~ .star-4 {
       border-color: var(--star-state-focus);
       border-style: solid;
-      border-width: 2px;
+      border-width: 1px;
       border-radius: 25%;
     }
 
     #rating-5:focus ~ .star-5 {
       border-color: var(--star-state-focus);
       border-style: solid;
-      border-width: 2px;
+      border-width: 1px;
       border-radius: 25%;
     }
 

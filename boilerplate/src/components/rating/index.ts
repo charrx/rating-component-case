@@ -10,6 +10,11 @@ enum Sizes {
   Large = "large",
 }
 
+enum States {
+  Interactive = "interactive",
+  Readonly = "readonly",
+}
+
 const roundedStar = html`
   <svg
     viewBox="0 0 24 24"
@@ -34,13 +39,14 @@ export class StarRating extends LitElement {
 
   @property({ type: Boolean }) autofocus = false;
 
-  @property({ type: Boolean }) readonly = false;
+  @property({ type: String }) state = States.Interactive;
 
   @property({ type: String }) size = Sizes.Small;
 
   @property({ type: Number }) max = 5;
 
   private _handleClick(e: Event) {
+    console.log("clicked!");
     const target = e.target as HTMLInputElement;
     this.rating = parseInt(target.value);
   }
@@ -66,16 +72,17 @@ export class StarRating extends LitElement {
                 name="rating"
                 id="rating-${reversedStar}"
                 value="${reversedStar}"
-                tabindex="${reversedStar + 1}"
+                class="${this.state}"
                 @click=${this._handleClick}
+                tabindex="${reversedStar + 1}"
                 ?checked=${this.rating === reversedStar}
                 ?disabled=${this.disabled}
-                ?readonly=${this.readonly}
               />
               <label
                 for="rating-${reversedStar}"
                 class="star-${reversedStar} ${this.size}"
                 role="presentation"
+                aria-label="${accessibilityLabels[reversedStar - 1]}"
                 title="${accessibilityLabels[reversedStar - 1]}"
               >
                 ${roundedStar}</label
